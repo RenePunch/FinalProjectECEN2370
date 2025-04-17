@@ -1,0 +1,10 @@
+13:15:43 **** Incremental Build of configuration Debug for project ECEN2370_StarterCode_SP25 ****
+make -j9 all 
+arm-none-eabi-size  ECEN2370_StarterCode_SP25.elf 
+   text	   data	    bss	    dec	    hex	filename
+  33040	    120	 156344	 189504	  2e440	ECEN2370_StarterCode_SP25.elf
+Finished building: default.size.stdout
+ 
+
+13:15:43 Build Finished. 0 errors, 0 warnings. (took 224ms)
+

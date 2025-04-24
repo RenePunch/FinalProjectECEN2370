@@ -9,6 +9,8 @@
 
 extern char board[ROWS][COLS];
 
+void firstScreen(void);
+
 void initBoard(void);
 
 void printBoard(void);

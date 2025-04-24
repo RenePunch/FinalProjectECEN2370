@@ -21,21 +21,23 @@ void firstScreen(void){
 	LCD_DisplayChar(150,140,'t');
 	LCD_DisplayChar(180,140,'4');
 
-    LCD_DisplayChar(10,190,'P');
-    LCD_DisplayChar(20,190,'L');
-    LCD_DisplayChar(30,190,'A');
-    LCD_DisplayChar(45,190,'Y');
-    LCD_DisplayChar(60,190,'E');
-    LCD_DisplayChar(75,190,'R');
-    LCD_DisplayChar(95,190,'1');
+    LCD_DisplayChar(10,190,'1');
+    LCD_DisplayChar(20,190,'P');
+    LCD_DisplayChar(30,190,'L');
+    LCD_DisplayChar(40,190,'A');
+    LCD_DisplayChar(55,190,'Y');
+    LCD_DisplayChar(70,190,'E');
+    LCD_DisplayChar(85,190,'R');
+    
 
-    LCD_DisplayChar(120,190,'P');
-    LCD_DisplayChar(130,190,'L');
-    LCD_DisplayChar(140,190,'A');
-    LCD_DisplayChar(155,190,'Y');
-    LCD_DisplayChar(170,190,'E');
-    LCD_DisplayChar(185,190,'R');
-    LCD_DisplayChar(205,190,'2');
+    LCD_DisplayChar(115,190,'2');
+    LCD_DisplayChar(135,190,'P');
+    LCD_DisplayChar(145,190,'L');
+    LCD_DisplayChar(155,190,'A');
+    LCD_DisplayChar(170,190,'Y');
+    LCD_DisplayChar(185,190,'E');
+    LCD_DisplayChar(200,190,'R');
+    LCD_DisplayChar(215,190,'S');
 
 }
 void initBoard(void) {

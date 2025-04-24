@@ -9,6 +9,17 @@
 
 char board[ROWS][COLS];
 
+void firstScreen(void){
+	LCD_Draw_Char(100,140,'C');
+	LCD_Draw_Char(115,140,'o');
+	LCD_Draw_Char(125,140,'n');
+	LCD_Draw_Char(130,140,'n');
+	LCD_Draw_Char(140,140,'e');
+	LCD_Draw_Char(150,140,'c');
+	LCD_Draw_Char(165,140,'t');
+	LCD_Draw_Char(175,140,'4');
+
+}
 void initBoard(void) {
     for (int r = 0; r < ROWS; r++) {
         for (int c = 0; c < COLS; c++) {
@@ -72,62 +83,4 @@ int isBoardFull(void) {
             if (board[r][c] == ' ') return 0;
     return 1;
 }
-
-// int main(void) {
-//     HAL_Init();
-//     SystemClock_Config();
-
-    
-//     FirstScreen_Init();
-//     int mode = 0;
-//     while ((mode = FirstScreen_Poll()) == 0) {
-//         HAL_Delay(10);
-//     }
-    
-
-   
-//     char currentPlayer = 'X';
-//     int win = 0;
-//     char again;
-
-//     do {
-//         initBoard();
-//         currentPlayer = 'X';
-//         win = 0;
-
-//         while (!win && !isBoardFull()) {
-//             printBoard();
-//             printf("Player %c, choose column (1-%d): ", currentPlayer, COLS);
-//             int col;
-//             if (scanf("%d", &col) != 1) {
-//                 printf("Invalid input. Exiting.\n");
-//                 return 1;
-//             }
-//             col--;
-
-//             if (dropPiece(col, currentPlayer) == -1) {
-//                 printf("Column %d is full or invalid. Try again.\n", col + 1);
-//                 continue;
-//             }
-
-//             if (checkWin(currentPlayer)) {
-//                 printBoard();
-//                 printf("Player %c wins!\n", currentPlayer);
-//                 win = 1;
-//             } else if (isBoardFull()) {
-//                 printBoard();
-//                 printf("It's a draw!\n");
-//                 break;
-//             }
-
-//             currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
-//         }
-
-//         printf("Play again? (Y/N): ");
-//         scanf(" %c", &again);
-//     } while (again == 'Y' || again == 'y');
-
-//     printf("Thanks for playing!\n");
-//     return 0;
-// }
 

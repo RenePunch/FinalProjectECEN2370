@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Game_Driver.h"
-#include "LCD_Driver.h"
 
 
 #define ROWS 6
@@ -10,14 +9,14 @@
 char board[ROWS][COLS];
 
 void firstScreen(void){
-	LCD_Draw_Char(100,140,'C');
-	LCD_Draw_Char(115,140,'o');
-	LCD_Draw_Char(125,140,'n');
-	LCD_Draw_Char(130,140,'n');
-	LCD_Draw_Char(140,140,'e');
-	LCD_Draw_Char(150,140,'c');
-	LCD_Draw_Char(165,140,'t');
-	LCD_Draw_Char(175,140,'4');
+	LCD_DisplayChar(100,140,'C');
+	LCD_DisplayChar(115,140,'o');
+	LCD_DisplayChar(125,140,'n');
+	LCD_DisplayChar(130,140,'n');
+	LCD_DisplayChar(140,140,'e');
+	LCD_DisplayChar(150,140,'c');
+	LCD_DisplayChar(165,140,'t');
+	LCD_DisplayChar(175,140,'4');
 
 }
 void initBoard(void) {

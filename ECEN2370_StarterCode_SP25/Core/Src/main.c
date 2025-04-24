@@ -22,6 +22,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "ApplicationCode.h"
+#include "Game_Driver.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -119,6 +120,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+	  firstScreen();
 
 
     /* USER CODE BEGIN 3 */

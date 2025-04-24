@@ -122,7 +122,7 @@ int main(void)
   {
     /* USER CODE END WHILE */
 
-
+	  LCD_Touch_Polling_Demo();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

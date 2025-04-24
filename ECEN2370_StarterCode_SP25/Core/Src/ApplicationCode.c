@@ -44,22 +44,25 @@ void ApplicationFirstScreen(){
 #if COMPILE_TOUCH_FUNCTIONS == 1
 void LCD_Touch_Polling_Demo(void)
 {
-	LCD_Clear(0,LCD_COLOR_BLUE);
 	while (1) {
 		/* If touch pressed */
 		if (returnTouchStateAndLocation(&StaticTouchData) == STMPE811_State_Pressed) {
 			/* Touch valid */
-			if((5 <= StaticTouchData.x <= 90) && (180 <= StaticTouchData.y <= 200)){
+			if(StaticTouchData.x >= 120){
+
 				LCD_Clear(0,LCD_COLOR_BLACK);
+
+
 			}
-			else if((105 <= StaticTouchData.x <= 225) && (180 <= StaticTouchData.y <= 200)){
+			else if(StaticTouchData.x <= 120){
 				LCD_Clear(0,LCD_COLOR_RED);
 			}
+			HAL_Delay(1000);
 
 
 		} else {
 			/* Touch not pressed */
-			LCD_Clear(0,LCD_COLOR_RED);
+			//ApplicationFirstScreen();
 
 		}
 	}

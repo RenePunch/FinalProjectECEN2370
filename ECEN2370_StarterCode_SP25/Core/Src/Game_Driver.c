@@ -1,15 +1,38 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Game_Driver.h"
+#include "LCD_Driver.h"
+#include "stmpe811.h"
+#include "fonts.h"
+#include "stm32f4xx_hal.h"  // for RNG handle
 
+extern RNG_HandleTypeDef hrng;  // Defined in main.c
 
 #define ROWS 6
 #define COLS 7
 
-char board[ROWS][COLS];
+// Board drawing constants
+#define BOARD_BG_COLOR    LCD_COLOR_BLUE
+#define EMPTY_HOLE_COLOR  LCD_COLOR_WHITE
+#define PLAYER1_COLOR     LCD_COLOR_RED    // X
+#define PLAYER2_COLOR     LCD_COLOR_YELLOW // O
 
-void firstScreen(void){
-	LCD_Clear(0,LCD_COLOR_BLUE);
+// Positioning of the grid on screen
+#define ORIGIN_X 15u
+#define ORIGIN_Y 80u
+#define CELL_SPACING_X 30u
+#define CELL_SPACING_Y 30u
+#define CELL_RADIUS    12u
+
+char board[ROWS][COLS];
+static STMPE811_TouchData touchData;
+
+
+static int PollTouchColumn(void);
+
+
+void firstScreen(void) {
+    LCD_Clear(0,LCD_COLOR_BLUE);
 	LCD_SetTextColor(LCD_COLOR_BLACK);
 	LCD_SetFont(&Font16x24);
 	LCD_DisplayChar(60,140,'C');
@@ -38,8 +61,10 @@ void firstScreen(void){
     LCD_DisplayChar(185,190,'E');
     LCD_DisplayChar(200,190,'R');
     LCD_DisplayChar(215,190,'S');
-
+    
 }
+
+
 void initBoard(void) {
     for (int r = 0; r < ROWS; r++) {
         for (int c = 0; c < COLS; c++) {
@@ -48,18 +73,49 @@ void initBoard(void) {
     }
 }
 
-void printBoard(void) {
-    printf("\n");
+
+void GameScreen_Init(void) {
+    LCD_Clear(0, BOARD_BG_COLOR);
     for (int r = 0; r < ROWS; r++) {
-        printf("|");
         for (int c = 0; c < COLS; c++) {
-            printf(" %c |", board[r][c]);
+            uint16_t x = ORIGIN_X + c * CELL_SPACING_X;
+            uint16_t y = ORIGIN_Y + r * CELL_SPACING_Y;
+            LCD_Draw_Circle_Fill(x, y, CELL_RADIUS, EMPTY_HOLE_COLOR);
         }
-        printf("\n");
     }
-    printf("-----------------------------\n");
-    printf("  1   2   3   4   5   6   7  \n\n");
 }
+
+
+void GameScreen_Update(void) {
+    for (int r = 0; r < ROWS; r++) {
+        for (int c = 0; c < COLS; c++) {
+            char cell = board[r][c];
+            uint16_t x = ORIGIN_X + c * CELL_SPACING_X;
+            uint16_t y = ORIGIN_Y + r * CELL_SPACING_Y;
+            uint16_t color = EMPTY_HOLE_COLOR;
+            if (cell == 'X') color = PLAYER1_COLOR;
+            else if (cell == 'O') color = PLAYER2_COLOR;
+            LCD_Draw_Circle_Fill(x, y, CELL_RADIUS, color);
+        }
+    }
+}
+
+
+static int PollTouchColumn(void) {
+    while (1) {
+        if (returnTouchStateAndLocation(&touchData) == STMPE811_State_Ok) {
+            DetermineTouchPosition(&touchData);
+            int tx = touchData.x;
+            // Check if touch is in the grid area horizontally
+            if (tx >= ORIGIN_X - CELL_SPACING_X/2 && tx <= ORIGIN_X + (COLS-1)*CELL_SPACING_X + CELL_SPACING_X/2) {
+                int col = (tx - (ORIGIN_X - CELL_SPACING_X/2)) / CELL_SPACING_X;
+                if (col >= 0 && col < COLS) return col;
+            }
+        }
+        HAL_Delay(50);
+    }
+}
+
 
 int dropPiece(int col, char piece) {
     if (col < 0 || col >= COLS) return -1;
@@ -74,9 +130,9 @@ int dropPiece(int col, char piece) {
 
 int checkDirection(int startR, int startC, int dR, int dC, char piece) {
     for (int i = 1; i < 4; i++) {
-        int r = startR + dR * i;
-        int c = startC + dC * i;
-        if (r < 0 || r >= ROWS || c < 0 || c >= COLS || board[r][c] != piece)
+        int rr = startR + dR * i;
+        int cc = startC + dC * i;
+        if (rr < 0 || rr >= ROWS || cc < 0 || cc >= COLS || board[rr][cc] != piece)
             return 0;
     }
     return 1;
@@ -86,9 +142,9 @@ int checkWin(char piece) {
     for (int r = 0; r < ROWS; r++) {
         for (int c = 0; c < COLS; c++) {
             if (board[r][c] != piece) continue;
-            if (checkDirection(r, c, 0, 1, piece) ||
-                checkDirection(r, c, 1, 0, piece) ||
-                checkDirection(r, c, 1, 1, piece) ||
+            if (checkDirection(r, c, 0, 1, piece)  ||
+                checkDirection(r, c, 1, 0, piece)  ||
+                checkDirection(r, c, 1, 1, piece)  ||
                 checkDirection(r, c, -1, 1, piece)) {
                 return 1;
             }
@@ -98,9 +154,54 @@ int checkWin(char piece) {
 }
 
 int isBoardFull(void) {
-    for (int r = 0; r < ROWS; r++)
-        for (int c = 0; c < COLS; c++)
+    for (int r = 0; r < ROWS; r++) {
+        for (int c = 0; c < COLS; c++) {
             if (board[r][c] == ' ') return 0;
+        }
+    }
     return 1;
 }
 
+// One-player vs RNG bot
+void PlayOnePlayer(void) {
+    initBoard();
+    GameScreen_Init();
+    char current = 'X'; // Human is X
+    int gameOver = 0;
+    while (!gameOver) {
+        int col;
+        if (current == 'X') {
+            col = PollTouchColumn();
+        } else {
+            // Bot pick using RNG peripheral
+            uint32_t rnd;
+            do {
+                HAL_RNG_GenerateRandomNumber(&hrng, &rnd);
+                col = rnd % COLS;
+            } while (board[0][col] != ' ');
+        }
+        if (dropPiece(col, current) != -1) {
+            GameScreen_Update();
+            if (checkWin(current) || isBoardFull()) gameOver = 1;
+            current = (current == 'X') ? 'O' : 'X';
+        }
+    }
+    // Result display could be added here
+}
+
+// Two-player local
+void PlayTwoPlayer(void) {
+    initBoard();
+    GameScreen_Init();
+    char current = 'X';
+    int gameOver = 0;
+    while (!gameOver) {
+        int col = PollTouchColumn();
+        if (dropPiece(col, current) != -1) {
+            GameScreen_Update();
+            if (checkWin(current) || isBoardFull()) gameOver = 1;
+            current = (current == 'X') ? 'O' : 'X';
+        }
+    }
+    // Result display could be added here
+}

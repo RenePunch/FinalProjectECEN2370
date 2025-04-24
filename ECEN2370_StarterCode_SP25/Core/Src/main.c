@@ -23,6 +23,7 @@
 /* USER CODE BEGIN Includes */
 #include "ApplicationCode.h"
 #include "Game_Driver.h"
+#include <stdio.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -52,6 +53,8 @@ SPI_HandleTypeDef hspi5;
 TIM_HandleTypeDef htim2;
 
 /* USER CODE BEGIN PV */
+
+extern void initialise_monitor_handles(void);
 
 /* USER CODE END PV */
 
@@ -109,6 +112,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
   ApplicationInit(); // Initializes the LCD functionality
   ApplicationFirstScreen();
+
   //LCD_Visual_Demo();
   HAL_Delay(5000);
   /* USER CODE END 2 */

@@ -50,12 +50,12 @@ void LCD_Touch_Polling_Demo(void)
 			/* Touch valid */
 			if(StaticTouchData.x >= 120){
 
-				LCD_Clear(0,LCD_COLOR_BLACK);
+				PlayOnePlayer();
 
 
 			}
 			else if(StaticTouchData.x <= 120){
-				LCD_Clear(0,LCD_COLOR_RED);
+				PlayTwoPlayer();
 			}
 			HAL_Delay(1000);
 

@@ -106,7 +106,7 @@ static int PollTouchColumn(void) {
         if (returnTouchStateAndLocation(&touchData) == STMPE811_State_Ok) {
             DetermineTouchPosition(&touchData);
             int tx = touchData.x;
-            // Check if touch is in the grid area horizontally
+
             if (tx >= ORIGIN_X - CELL_SPACING_X/2 && tx <= ORIGIN_X + (COLS-1)*CELL_SPACING_X + CELL_SPACING_X/2) {
                 int col = (tx - (ORIGIN_X - CELL_SPACING_X/2)) / CELL_SPACING_X;
                 if (col >= 0 && col < COLS) return col;
@@ -162,18 +162,18 @@ int isBoardFull(void) {
     return 1;
 }
 
-// One-player vs RNG bot
+
 void PlayOnePlayer(void) {
     initBoard();
     GameScreen_Init();
-    char current = 'X'; // Human is X
+    char current = 'X';
     int gameOver = 0;
     while (!gameOver) {
         int col;
         if (current == 'X') {
             col = PollTouchColumn();
         } else {
-            // Bot pick using RNG peripheral
+
             uint32_t rnd;
             do {
                 HAL_RNG_GenerateRandomNumber(&hrng, &rnd);
@@ -186,10 +186,10 @@ void PlayOnePlayer(void) {
             current = (current == 'X') ? 'O' : 'X';
         }
     }
-    // Result display could be added here
+
 }
 
-// Two-player local
+
 void PlayTwoPlayer(void) {
     initBoard();
     GameScreen_Init();
@@ -203,5 +203,5 @@ void PlayTwoPlayer(void) {
             current = (current == 'X') ? 'O' : 'X';
         }
     }
-    // Result display could be added here
+
 }

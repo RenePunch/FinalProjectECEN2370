@@ -2570,6 +2570,7 @@ int main(void)
  8001342:	f241 3088 	movw	r0, #5000	@ 0x1388
  8001346:	f001 fadf 	bl	8002908 <HAL_Delay>
   /* USER CODE END 2 */
+  
 #if COMPILE_TOUCH_FUNCTIONS == 1 // This block will need to be deleted
   LCD_Touch_Polling_Demo(); // This function Will not return
  800134a:	f7ff f955 	bl	80005f8 <LCD_Touch_Polling_Demo>

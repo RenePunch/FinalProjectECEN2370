@@ -1,6 +1,6 @@
-../Core/Src/Game_Driver.c:8:6:initBoard	16	static
-../Core/Src/Game_Driver.c:17:6:printBoard	16	static
-../Core/Src/Game_Driver.c:31:5:dropPiece	24	static
-../Core/Src/Game_Driver.c:43:5:checkDirection	40	static
+../Core/Src/Game_Driver.c:12:6:initBoard	16	static
+../Core/Src/Game_Driver.c:20:6:printBoard	16	static
+../Core/Src/Game_Driver.c:33:5:dropPiece	24	static
+../Core/Src/Game_Driver.c:44:5:checkDirection	40	static
 ../Core/Src/Game_Driver.c:54:5:checkWin	32	static
-../Core/Src/Game_Driver.c:71:5:isBoardFull	16	static
+../Core/Src/Game_Driver.c:69:5:isBoardFull	16	static

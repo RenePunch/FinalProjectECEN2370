@@ -15,9 +15,7 @@ void printBoard(void);
 
 int dropPiece(int col, char piece);
 
-
 int checkDirection(int startR, int startC, int dR, int dC, char piece);
-
 
 int checkWin(char piece);
 

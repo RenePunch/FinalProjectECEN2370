@@ -1,6 +1,6 @@
-../Core/Src/Game_Driver.c:8:6:initBoard	3
-../Core/Src/Game_Driver.c:17:6:printBoard	3
-../Core/Src/Game_Driver.c:31:5:dropPiece	5
-../Core/Src/Game_Driver.c:43:5:checkDirection	7
+../Core/Src/Game_Driver.c:12:6:initBoard	3
+../Core/Src/Game_Driver.c:20:6:printBoard	3
+../Core/Src/Game_Driver.c:33:5:dropPiece	5
+../Core/Src/Game_Driver.c:44:5:checkDirection	7
 ../Core/Src/Game_Driver.c:54:5:checkWin	8
-../Core/Src/Game_Driver.c:71:5:isBoardFull	4
+../Core/Src/Game_Driver.c:69:5:isBoardFull	4

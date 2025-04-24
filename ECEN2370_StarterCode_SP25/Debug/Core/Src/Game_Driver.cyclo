@@ -1,7 +1,7 @@
 ../Core/Src/Game_Driver.c:11:6:firstScreen	1
-../Core/Src/Game_Driver.c:25:6:initBoard	3
-../Core/Src/Game_Driver.c:33:6:printBoard	3
-../Core/Src/Game_Driver.c:46:5:dropPiece	5
-../Core/Src/Game_Driver.c:57:5:checkDirection	7
-../Core/Src/Game_Driver.c:67:5:checkWin	8
-../Core/Src/Game_Driver.c:82:5:isBoardFull	4
+../Core/Src/Game_Driver.c:41:6:initBoard	3
+../Core/Src/Game_Driver.c:49:6:printBoard	3
+../Core/Src/Game_Driver.c:62:5:dropPiece	5
+../Core/Src/Game_Driver.c:73:5:checkDirection	7
+../Core/Src/Game_Driver.c:83:5:checkWin	8
+../Core/Src/Game_Driver.c:98:5:isBoardFull	4

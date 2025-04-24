@@ -12,14 +12,30 @@ void firstScreen(void){
 	LCD_Clear(0,LCD_COLOR_BLUE);
 	LCD_SetTextColor(LCD_COLOR_BLACK);
 	LCD_SetFont(&Font16x24);
-	LCD_DisplayChar(100,140,'C');
-	LCD_DisplayChar(115,140,'o');
-	LCD_DisplayChar(125,140,'n');
-	LCD_DisplayChar(135,140,'n');
-	LCD_DisplayChar(145,140,'e');
-	LCD_DisplayChar(155,140,'c');
-	LCD_DisplayChar(165,140,'t');
-	LCD_DisplayChar(190,140,'4');
+	LCD_DisplayChar(60,140,'C');
+	LCD_DisplayChar(75,140,'o');
+	LCD_DisplayChar(90,140,'n');
+	LCD_DisplayChar(105,140,'n');
+	LCD_DisplayChar(120,140,'e');
+	LCD_DisplayChar(135,140,'c');
+	LCD_DisplayChar(150,140,'t');
+	LCD_DisplayChar(180,140,'4');
+
+    LCD_DisplayChar(10,190,'P');
+    LCD_DisplayChar(20,190,'L');
+    LCD_DisplayChar(30,190,'A');
+    LCD_DisplayChar(45,190,'Y');
+    LCD_DisplayChar(60,190,'E');
+    LCD_DisplayChar(75,190,'R');
+    LCD_DisplayChar(95,190,'1');
+
+    LCD_DisplayChar(120,190,'P');
+    LCD_DisplayChar(130,190,'L');
+    LCD_DisplayChar(140,190,'A');
+    LCD_DisplayChar(155,190,'Y');
+    LCD_DisplayChar(170,190,'E');
+    LCD_DisplayChar(185,190,'R');
+    LCD_DisplayChar(205,190,'2');
 
 }
 void initBoard(void) {

@@ -4,20 +4,20 @@
 #include "LCD_Driver.h"
 #include "stmpe811.h"
 #include "fonts.h"
-#include "stm32f4xx_hal.h"  // for RNG handle
+#include "stm32f4xx_hal.h"
 
-extern RNG_HandleTypeDef hrng;  // Defined in main.c
+extern RNG_HandleTypeDef hrng;
 
 #define ROWS 6
 #define COLS 7
 
-// Board drawing constants
+
 #define BOARD_BG_COLOR    LCD_COLOR_BLUE
 #define EMPTY_HOLE_COLOR  LCD_COLOR_WHITE
-#define PLAYER1_COLOR     LCD_COLOR_RED    // X
-#define PLAYER2_COLOR     LCD_COLOR_YELLOW // O
+#define PLAYER1_COLOR     LCD_COLOR_RED
+#define PLAYER2_COLOR     LCD_COLOR_YELLOW
 
-// Positioning of the grid on screen
+
 #define ORIGIN_X 15u
 #define ORIGIN_Y 80u
 #define CELL_SPACING_X 30u

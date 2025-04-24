@@ -10,7 +10,6 @@
 ../Core/Src/LCD_Driver.c:256:6:LCD_SetFont	1
 ../Core/Src/LCD_Driver.c:262:6:LCD_Draw_Char	7
 ../Core/Src/LCD_Driver.c:282:6:LCD_DisplayChar	1
-../Core/Src/LCD_Driver.c:288:6:visualDemo	4
 ../Core/Src/LCD_Driver.c:338:6:LCD_Error_Handler	1
 ../Core/Src/LCD_Driver.c:353:6:InitializeLCDTouch	2
 ../Core/Src/LCD_Driver.c:361:18:returnTouchStateAndLocation	1

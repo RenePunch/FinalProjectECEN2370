@@ -32,11 +32,14 @@ void ApplicationInit(void)
 
 	#endif // COMPILE_TOUCH_FUNCTIONS
 }
-
-void LCD_Visual_Demo(void)
-{
-	visualDemo();
+void ApplicationFirstScreen(){
+	firstScreen();
 }
+
+// void LCD_Visual_Demo(void)
+// {
+// 	visualDemo();
+// }
 
 #if COMPILE_TOUCH_FUNCTIONS == 1
 void LCD_Touch_Polling_Demo(void)

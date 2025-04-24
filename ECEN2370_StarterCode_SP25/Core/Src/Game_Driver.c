@@ -9,14 +9,17 @@
 char board[ROWS][COLS];
 
 void firstScreen(void){
+	LCD_Clear(0,LCD_COLOR_BLUE);
+	LCD_SetTextColor(LCD_COLOR_BLACK);
+	LCD_SetFont(&Font16x24);
 	LCD_DisplayChar(100,140,'C');
 	LCD_DisplayChar(115,140,'o');
 	LCD_DisplayChar(125,140,'n');
-	LCD_DisplayChar(130,140,'n');
-	LCD_DisplayChar(140,140,'e');
-	LCD_DisplayChar(150,140,'c');
+	LCD_DisplayChar(135,140,'n');
+	LCD_DisplayChar(145,140,'e');
+	LCD_DisplayChar(155,140,'c');
 	LCD_DisplayChar(165,140,'t');
-	LCD_DisplayChar(175,140,'4');
+	LCD_DisplayChar(190,140,'4');
 
 }
 void initBoard(void) {

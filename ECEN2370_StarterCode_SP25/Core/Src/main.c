@@ -108,19 +108,19 @@ int main(void)
   MX_I2C3_Init();
   /* USER CODE BEGIN 2 */
   ApplicationInit(); // Initializes the LCD functionality
-  LCD_Visual_Demo();
+  ApplicationFirstScreen();
+  //LCD_Visual_Demo();
   HAL_Delay(5000);
   /* USER CODE END 2 */
   
-#if COMPILE_TOUCH_FUNCTIONS == 1 // This block will need to be deleted
-  LCD_Touch_Polling_Demo(); // This function Will not return
-#endif
+//#if COMPILE_TOUCH_FUNCTIONS == 1 // This block will need to be deleted
+//  LCD_Touch_Polling_Demo(); // This function Will not return
+//#endif
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
     /* USER CODE END WHILE */
-	  firstScreen();
 
 
     /* USER CODE BEGIN 3 */

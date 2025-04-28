@@ -8,4 +8,4 @@
 ../Core/Src/Game_Driver.c:141:5:checkWin	8
 ../Core/Src/Game_Driver.c:156:5:isBoardFull	4
 ../Core/Src/Game_Driver.c:166:6:PlayOnePlayer	8
-../Core/Src/Game_Driver.c:193:6:PlayTwoPlayer	6
+../Core/Src/Game_Driver.c:212:6:PlayTwoPlayer	6

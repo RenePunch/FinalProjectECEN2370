@@ -8,4 +8,4 @@
 ../Core/Src/Game_Driver.c:141:5:checkWin	32	static
 ../Core/Src/Game_Driver.c:156:5:isBoardFull	16	static
 ../Core/Src/Game_Driver.c:166:6:PlayOnePlayer	24	static
-../Core/Src/Game_Driver.c:193:6:PlayTwoPlayer	24	static
+../Core/Src/Game_Driver.c:212:6:PlayTwoPlayer	24	static

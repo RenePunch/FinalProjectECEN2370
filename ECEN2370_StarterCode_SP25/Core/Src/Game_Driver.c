@@ -164,7 +164,11 @@ int isBoardFull(void) {
 
 
 void PlayOnePlayer(void) {
-    LCD_Clear(0, BOARD_BG_COLOR);
+
+
+
+    initBoard();
+    GameScreen_Init();
     LCD_SetTextColor(LCD_COLOR_WHITE);
     LCD_SetFont(&Font16x24);
  
@@ -181,9 +185,6 @@ void PlayOnePlayer(void) {
     LCD_DisplayChar(85,40,'Y');
     LCD_DisplayChar(100,40,'E');
     LCD_DisplayChar(115,40,'R');
-    HAL_Delay(1000);
-    initBoard();
-    GameScreen_Init();
     char current = 'X';
     int gameOver = 0;
     while (!gameOver) {
@@ -209,26 +210,27 @@ void PlayOnePlayer(void) {
 
 
 void PlayTwoPlayer(void) {
-    LCD_Clear(0, BOARD_BG_COLOR);
-    LCD_SetTextColor(LCD_COLOR_WHITE);
-    LCD_SetFont(&Font16x24);
 
-    LCD_DisplayChar(40,20,'2');
-    LCD_DisplayChar(55,20,'-');
-    LCD_DisplayChar(70,20,'P');
-    LCD_DisplayChar(85,20,'L');
-    LCD_DisplayChar(100,20,'A');
-    LCD_DisplayChar(115,20,'Y');
-    LCD_DisplayChar(130,20,'E');
-    LCD_DisplayChar(145,20,'R');
 
-    LCD_DisplayChar(40,40,'M');
-    LCD_DisplayChar(55,40,'O');
-    LCD_DisplayChar(70,40,'D');
-    LCD_DisplayChar(85,40,'E');
-    HAL_Delay(1000);
+
     initBoard();
     GameScreen_Init();
+    LCD_SetTextColor(LCD_COLOR_WHITE);
+     LCD_SetFont(&Font16x24);
+
+     LCD_DisplayChar(40,20,'2');
+     LCD_DisplayChar(55,20,'-');
+     LCD_DisplayChar(70,20,'P');
+     LCD_DisplayChar(85,20,'L');
+     LCD_DisplayChar(100,20,'A');
+     LCD_DisplayChar(115,20,'Y');
+     LCD_DisplayChar(130,20,'E');
+     LCD_DisplayChar(145,20,'R');
+
+     LCD_DisplayChar(40,40,'M');
+     LCD_DisplayChar(55,40,'O');
+     LCD_DisplayChar(70,40,'D');
+     LCD_DisplayChar(85,40,'E');
     char current = 'X';
     int gameOver = 0;
     while (!gameOver) {

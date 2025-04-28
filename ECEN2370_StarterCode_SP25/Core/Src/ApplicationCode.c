@@ -48,13 +48,13 @@ void LCD_Touch_Polling_Demo(void)
 		/* If touch pressed */
 		if (returnTouchStateAndLocation(&StaticTouchData) == STMPE811_State_Pressed) {
 			/* Touch valid */
-			if(StaticTouchData.x >= 120){
+			if(StaticTouchData.x <= 120){
 
 				PlayOnePlayer();
 
 
 			}
-			else if(StaticTouchData.x <= 120){
+			else if(StaticTouchData.x >= 120){
 				PlayTwoPlayer();
 			}
 			HAL_Delay(1000);

@@ -18,17 +18,17 @@ extern RNG_HandleTypeDef hrng;
 #define PLAYER2_COLOR     LCD_COLOR_YELLOW
 
 
-#define ORIGIN_X 15u
-#define ORIGIN_Y 80u
-#define CELL_SPACING_X 30u
-#define CELL_SPACING_Y 30u
-#define CELL_RADIUS    12u
+#define ORIGIN_X 20u
+#define ORIGIN_Y 60u
+#define CELL_SPACING_X 32u
+#define CELL_SPACING_Y 40u
+#define CELL_RADIUS    13u
 
 char board[ROWS][COLS];
 static STMPE811_TouchData touchData;
 
 
-static int PollTouchColumn(void);
+
 
 
 void firstScreen(void) {
@@ -101,15 +101,40 @@ void GameScreen_Update(void) {
 }
 
 
-static int PollTouchColumn(void) {
+static int PollTouchColumn(char currentPlayer) {
     while (1) {
         if (returnTouchStateAndLocation(&touchData) == STMPE811_State_Ok) {
             DetermineTouchPosition(&touchData);
             int tx = touchData.x;
 
-            if (tx >= ORIGIN_X - CELL_SPACING_X/2 && tx <= ORIGIN_X + (COLS-1)*CELL_SPACING_X + CELL_SPACING_X/2) {
+
+            if (tx >= ORIGIN_X - CELL_SPACING_X/2 &&
+                tx <= ORIGIN_X + (COLS-1)*CELL_SPACING_X + CELL_SPACING_X/2) {
+
                 int col = (tx - (ORIGIN_X - CELL_SPACING_X/2)) / CELL_SPACING_X;
-                if (col >= 0 && col < COLS) return col;
+                if (col >= 0 && col < COLS) {
+
+                    int rowIndex = -1;
+                    for (int r = ROWS - 1; r >= 0; r--) {
+                        if (board[r][col] == ' ') {
+                            rowIndex = r;
+                            board[r][col] = currentPlayer;
+                            break;
+                        }
+                    }
+                    if (rowIndex != -1) {
+
+                        uint16_t color = (currentPlayer == 'X')
+                            ? LCD_COLOR_RED
+                            : LCD_COLOR_BLACK;
+
+                        uint16_t x = ORIGIN_X + col * CELL_SPACING_X;
+                        uint16_t y = ORIGIN_Y + rowIndex * CELL_SPACING_Y;
+
+                        LCD_Draw_Circle_Fill(x, y, CELL_RADIUS, color);
+                        return col;
+                    }
+                }
             }
         }
         HAL_Delay(50);
@@ -163,83 +188,83 @@ int isBoardFull(void) {
 }
 
 
+enum {
+    HUMAN = 'X', BOT = 'O'
+};
+
 void PlayOnePlayer(void) {
-
-
-
     initBoard();
     GameScreen_Init();
+    // display mode text unchanged above board
     LCD_SetTextColor(LCD_COLOR_WHITE);
     LCD_SetFont(&Font16x24);
- 
     LCD_DisplayChar(20,20,'S');
     LCD_DisplayChar(35,20,'I');
     LCD_DisplayChar(50,20,'N');
     LCD_DisplayChar(65,20,'G');
     LCD_DisplayChar(80,20,'L');
     LCD_DisplayChar(95,20,'E');
-
     LCD_DisplayChar(125,20,'P');
     LCD_DisplayChar(140,20,'L');
     LCD_DisplayChar(155,20,'A');
     LCD_DisplayChar(170,20,'Y');
     LCD_DisplayChar(185,20,'E');
     LCD_DisplayChar(200,20,'R');
-    char current = 'X';
-    int gameOver = 0;
-    while (!gameOver) {
-        int col;
-        if (current == 'X') {
-            col = PollTouchColumn();
-        } else {
 
+    char current = HUMAN;
+    while (1) {
+        int col;
+        if (current == HUMAN) {
+            col = PollTouchColumn(HUMAN);
+        } else {
+            
             uint32_t rnd;
             do {
                 HAL_RNG_GenerateRandomNumber(&hrng, &rnd);
                 col = rnd % COLS;
             } while (board[0][col] != ' ');
+          
+            for (int r = ROWS - 1; r >= 0; r--) {
+                if (board[r][col] == ' ') {
+                    board[r][col] = BOT;
+                    uint16_t x = ORIGIN_X + col * CELL_SPACING_X;
+                    uint16_t y = ORIGIN_Y + r * CELL_SPACING_Y;
+                    LCD_Draw_Circle_Fill(x, y, CELL_RADIUS, PLAYER2_COLOR);
+                    break;
+                }
+            }
         }
-        if (dropPiece(col, current) != -1) {
-            GameScreen_Update();
-            if (checkWin(current) || isBoardFull()) gameOver = 1;
-            current = (current == 'X') ? 'O' : 'X';
-        }
+        if (checkWin(current) || isBoardFull()) break;
+        current = (current == HUMAN) ? BOT : HUMAN;
     }
-
 }
 
 
+
 void PlayTwoPlayer(void) {
-
-
-
     initBoard();
     GameScreen_Init();
+
     LCD_SetTextColor(LCD_COLOR_WHITE);
-     LCD_SetFont(&Font16x24);
+    LCD_SetFont(&Font16x24);
+    LCD_DisplayChar(20,20,'2');
+    LCD_DisplayChar(35,20,'-');
+    LCD_DisplayChar(50,20,'P');
+    LCD_DisplayChar(65,20,'L');
+    LCD_DisplayChar(80,20,'A');
+    LCD_DisplayChar(95,20,'Y');
+    LCD_DisplayChar(110,20,'E');
+    LCD_DisplayChar(125,20,'R');
+    LCD_DisplayChar(155,20,'M');
+    LCD_DisplayChar(170,20,'O');
+    LCD_DisplayChar(185,20,'D');
+    LCD_DisplayChar(200,20,'E');
 
-     LCD_DisplayChar(20,20,'2');
-     LCD_DisplayChar(35,20,'-');
-     LCD_DisplayChar(50,20,'P');
-     LCD_DisplayChar(65,20,'L');
-     LCD_DisplayChar(80,20,'A');
-     LCD_DisplayChar(95,20,'Y');
-     LCD_DisplayChar(110,20,'E');
-     LCD_DisplayChar(125,20,'R');
-
-     LCD_DisplayChar(155,20,'M');
-     LCD_DisplayChar(170,20,'O');
-     LCD_DisplayChar(185,20,'D');
-     LCD_DisplayChar(200,20,'E');
-    char current = 'X';
-    int gameOver = 0;
-    while (!gameOver) {
-        int col = PollTouchColumn();
-        if (dropPiece(col, current) != -1) {
-            GameScreen_Update();
-            if (checkWin(current) || isBoardFull()) gameOver = 1;
-            current = (current == 'X') ? 'O' : 'X';
-        }
+    char current = HUMAN;
+    while (1) {
+      
+        PollTouchColumn(current);
+        if (checkWin(current) || isBoardFull()) break;
+        current = (current == HUMAN) ? BOT : HUMAN;
     }
-
 }

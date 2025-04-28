@@ -2,10 +2,10 @@
 ../Core/Src/Game_Driver.c:68:6:initBoard	16	static
 ../Core/Src/Game_Driver.c:77:6:GameScreen_Init	24	static
 ../Core/Src/Game_Driver.c:89:6:GameScreen_Update	24	static
-../Core/Src/Game_Driver.c:104:12:PollTouchColumn	16	static
-../Core/Src/Game_Driver.c:120:5:dropPiece	24	static
-../Core/Src/Game_Driver.c:131:5:checkDirection	40	static
-../Core/Src/Game_Driver.c:141:5:checkWin	32	static
-../Core/Src/Game_Driver.c:156:5:isBoardFull	16	static
-../Core/Src/Game_Driver.c:166:6:PlayOnePlayer	24	static
-../Core/Src/Game_Driver.c:212:6:PlayTwoPlayer	24	static
+../Core/Src/Game_Driver.c:104:12:PollTouchColumn	40	static
+../Core/Src/Game_Driver.c:145:5:dropPiece	24	static
+../Core/Src/Game_Driver.c:156:5:checkDirection	40	static
+../Core/Src/Game_Driver.c:166:5:checkWin	32	static
+../Core/Src/Game_Driver.c:181:5:isBoardFull	16	static
+../Core/Src/Game_Driver.c:195:6:PlayOnePlayer	32	static
+../Core/Src/Game_Driver.c:244:6:PlayTwoPlayer	16	static

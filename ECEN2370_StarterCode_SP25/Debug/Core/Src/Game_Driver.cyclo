@@ -2,10 +2,10 @@
 ../Core/Src/Game_Driver.c:68:6:initBoard	3
 ../Core/Src/Game_Driver.c:77:6:GameScreen_Init	3
 ../Core/Src/Game_Driver.c:89:6:GameScreen_Update	5
-../Core/Src/Game_Driver.c:104:12:PollTouchColumn	5
-../Core/Src/Game_Driver.c:120:5:dropPiece	5
-../Core/Src/Game_Driver.c:131:5:checkDirection	7
-../Core/Src/Game_Driver.c:141:5:checkWin	8
-../Core/Src/Game_Driver.c:156:5:isBoardFull	4
-../Core/Src/Game_Driver.c:166:6:PlayOnePlayer	8
-../Core/Src/Game_Driver.c:212:6:PlayTwoPlayer	6
+../Core/Src/Game_Driver.c:104:12:PollTouchColumn	10
+../Core/Src/Game_Driver.c:145:5:dropPiece	5
+../Core/Src/Game_Driver.c:156:5:checkDirection	7
+../Core/Src/Game_Driver.c:166:5:checkWin	8
+../Core/Src/Game_Driver.c:181:5:isBoardFull	4
+../Core/Src/Game_Driver.c:195:6:PlayOnePlayer	8
+../Core/Src/Game_Driver.c:244:6:PlayTwoPlayer	4

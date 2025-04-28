@@ -65,6 +65,24 @@ void firstScreen(void) {
     
 }
 
+void endScreen(void) {
+	touchData.orientation = STMPE811_Orientation_Portrait_2;
+    LCD_Clear(0,LCD_COLOR_BLUE);
+	LCD_SetTextColor(LCD_COLOR_BLACK);
+	LCD_SetFont(&Font16x24);
+	LCD_DisplayChar(60,140,'G');
+	LCD_DisplayChar(75,140,'A');
+	LCD_DisplayChar(90,140,'M');
+	LCD_DisplayChar(105,140,'E');
+	LCD_DisplayChar(135,140,'O');
+    LCD_DisplayChar(150,140,'V');
+    LCD_DisplayChar(165,140,'E');
+    LCD_DisplayChar(170,140,'R');
+
+
+
+}
+
 
 void initBoard(void) {
     for (int r = 0; r < ROWS; r++) {
@@ -139,7 +157,7 @@ static int PollTouchColumn(char currentPlayer) {
                 }
             }
         }
-        HAL_Delay(50);
+        HAL_Delay(200);
     }
 }
 
@@ -197,7 +215,7 @@ enum {
 void PlayOnePlayer(void) {
     initBoard();
     GameScreen_Init();
-    // display mode text unchanged above board
+
     LCD_SetTextColor(LCD_COLOR_WHITE);
     LCD_SetFont(&Font16x24);
     LCD_DisplayChar(20,20,'S');

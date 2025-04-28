@@ -52,7 +52,7 @@ void LCD_Touch_Polling_Demo(void)
 
 				PlayOnePlayer();
 				endScreen();
-				HAL_Delay(1000);
+				HAL_Delay(10000);
 				firstScreen();
 
 
@@ -60,7 +60,7 @@ void LCD_Touch_Polling_Demo(void)
 			else if(StaticTouchData.x >= 120){
 				PlayTwoPlayer();
 				endScreen();
-				HAL_Delay(1000);
+				HAL_Delay(10000);
 				firstScreen();
 			}
 			HAL_Delay(1000);

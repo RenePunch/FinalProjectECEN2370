@@ -1213,66 +1213,66 @@ void PlayOnePlayer(void) {
  8000a72:	4845      	ldr	r0, [pc, #276]	@ (8000b88 <PlayOnePlayer+0x12c>)
  8000a74:	f000 fb16 	bl	80010a4 <LCD_SetFont>
  
-    LCD_DisplayChar(40,20,'S');
+    LCD_DisplayChar(20,20,'S');
  8000a78:	2253      	movs	r2, #83	@ 0x53
  8000a7a:	2114      	movs	r1, #20
- 8000a7c:	2028      	movs	r0, #40	@ 0x28
+ 8000a7c:	2014      	movs	r0, #20
  8000a7e:	f000 fb8f 	bl	80011a0 <LCD_DisplayChar>
-    LCD_DisplayChar(55,20,'I');
+    LCD_DisplayChar(35,20,'I');
  8000a82:	2249      	movs	r2, #73	@ 0x49
  8000a84:	2114      	movs	r1, #20
- 8000a86:	2037      	movs	r0, #55	@ 0x37
+ 8000a86:	2023      	movs	r0, #35	@ 0x23
  8000a88:	f000 fb8a 	bl	80011a0 <LCD_DisplayChar>
-    LCD_DisplayChar(70,20,'N');
+    LCD_DisplayChar(50,20,'N');
  8000a8c:	224e      	movs	r2, #78	@ 0x4e
  8000a8e:	2114      	movs	r1, #20
- 8000a90:	2046      	movs	r0, #70	@ 0x46
+ 8000a90:	2032      	movs	r0, #50	@ 0x32
  8000a92:	f000 fb85 	bl	80011a0 <LCD_DisplayChar>
-    LCD_DisplayChar(85,20,'G');
+    LCD_DisplayChar(65,20,'G');
  8000a96:	2247      	movs	r2, #71	@ 0x47
  8000a98:	2114      	movs	r1, #20
- 8000a9a:	2055      	movs	r0, #85	@ 0x55
+ 8000a9a:	2041      	movs	r0, #65	@ 0x41
  8000a9c:	f000 fb80 	bl	80011a0 <LCD_DisplayChar>
-    LCD_DisplayChar(100,20,'L');
+    LCD_DisplayChar(80,20,'L');
  8000aa0:	224c      	movs	r2, #76	@ 0x4c
  8000aa2:	2114      	movs	r1, #20
- 8000aa4:	2064      	movs	r0, #100	@ 0x64
+ 8000aa4:	2050      	movs	r0, #80	@ 0x50
  8000aa6:	f000 fb7b 	bl	80011a0 <LCD_DisplayChar>
-    LCD_DisplayChar(115,20,'E');
+    LCD_DisplayChar(95,20,'E');
  8000aaa:	2245      	movs	r2, #69	@ 0x45
  8000aac:	2114      	movs	r1, #20
- 8000aae:	2073      	movs	r0, #115	@ 0x73
+ 8000aae:	205f      	movs	r0, #95	@ 0x5f
  8000ab0:	f000 fb76 	bl	80011a0 <LCD_DisplayChar>
 
-    LCD_DisplayChar(40,40,'P');
+    LCD_DisplayChar(125,20,'P');
  8000ab4:	2250      	movs	r2, #80	@ 0x50
- 8000ab6:	2128      	movs	r1, #40	@ 0x28
- 8000ab8:	2028      	movs	r0, #40	@ 0x28
+ 8000ab6:	2114      	movs	r1, #20
+ 8000ab8:	207d      	movs	r0, #125	@ 0x7d
  8000aba:	f000 fb71 	bl	80011a0 <LCD_DisplayChar>
-    LCD_DisplayChar(55,40,'L');
+    LCD_DisplayChar(140,20,'L');
  8000abe:	224c      	movs	r2, #76	@ 0x4c
- 8000ac0:	2128      	movs	r1, #40	@ 0x28
- 8000ac2:	2037      	movs	r0, #55	@ 0x37
+ 8000ac0:	2114      	movs	r1, #20
+ 8000ac2:	208c      	movs	r0, #140	@ 0x8c
  8000ac4:	f000 fb6c 	bl	80011a0 <LCD_DisplayChar>
-    LCD_DisplayChar(70,40,'A');
+    LCD_DisplayChar(155,20,'A');
  8000ac8:	2241      	movs	r2, #65	@ 0x41
- 8000aca:	2128      	movs	r1, #40	@ 0x28
- 8000acc:	2046      	movs	r0, #70	@ 0x46
+ 8000aca:	2114      	movs	r1, #20
+ 8000acc:	209b      	movs	r0, #155	@ 0x9b
  8000ace:	f000 fb67 	bl	80011a0 <LCD_DisplayChar>
-    LCD_DisplayChar(85,40,'Y');
+    LCD_DisplayChar(170,20,'Y');
  8000ad2:	2259      	movs	r2, #89	@ 0x59
- 8000ad4:	2128      	movs	r1, #40	@ 0x28
- 8000ad6:	2055      	movs	r0, #85	@ 0x55
+ 8000ad4:	2114      	movs	r1, #20
+ 8000ad6:	20aa      	movs	r0, #170	@ 0xaa
  8000ad8:	f000 fb62 	bl	80011a0 <LCD_DisplayChar>
-    LCD_DisplayChar(100,40,'E');
+    LCD_DisplayChar(185,20,'E');
  8000adc:	2245      	movs	r2, #69	@ 0x45
- 8000ade:	2128      	movs	r1, #40	@ 0x28
- 8000ae0:	2064      	movs	r0, #100	@ 0x64
+ 8000ade:	2114      	movs	r1, #20
+ 8000ae0:	20b9      	movs	r0, #185	@ 0xb9
  8000ae2:	f000 fb5d 	bl	80011a0 <LCD_DisplayChar>
-    LCD_DisplayChar(115,40,'R');
+    LCD_DisplayChar(200,20,'R');
  8000ae6:	2252      	movs	r2, #82	@ 0x52
- 8000ae8:	2128      	movs	r1, #40	@ 0x28
- 8000aea:	2073      	movs	r0, #115	@ 0x73
+ 8000ae8:	2114      	movs	r1, #20
+ 8000aea:	20c8      	movs	r0, #200	@ 0xc8
  8000aec:	f000 fb58 	bl	80011a0 <LCD_DisplayChar>
     char current = 'X';
  8000af0:	2358      	movs	r3, #88	@ 0x58
@@ -1391,66 +1391,66 @@ void PlayTwoPlayer(void) {
  8000bae:	4837      	ldr	r0, [pc, #220]	@ (8000c8c <PlayTwoPlayer+0xf4>)
  8000bb0:	f000 fa78 	bl	80010a4 <LCD_SetFont>
 
-     LCD_DisplayChar(40,20,'2');
+     LCD_DisplayChar(20,20,'2');
  8000bb4:	2232      	movs	r2, #50	@ 0x32
  8000bb6:	2114      	movs	r1, #20
- 8000bb8:	2028      	movs	r0, #40	@ 0x28
+ 8000bb8:	2014      	movs	r0, #20
  8000bba:	f000 faf1 	bl	80011a0 <LCD_DisplayChar>
-     LCD_DisplayChar(55,20,'-');
+     LCD_DisplayChar(35,20,'-');
  8000bbe:	222d      	movs	r2, #45	@ 0x2d
  8000bc0:	2114      	movs	r1, #20
- 8000bc2:	2037      	movs	r0, #55	@ 0x37
+ 8000bc2:	2023      	movs	r0, #35	@ 0x23
  8000bc4:	f000 faec 	bl	80011a0 <LCD_DisplayChar>
-     LCD_DisplayChar(70,20,'P');
+     LCD_DisplayChar(50,20,'P');
  8000bc8:	2250      	movs	r2, #80	@ 0x50
  8000bca:	2114      	movs	r1, #20
- 8000bcc:	2046      	movs	r0, #70	@ 0x46
+ 8000bcc:	2032      	movs	r0, #50	@ 0x32
  8000bce:	f000 fae7 	bl	80011a0 <LCD_DisplayChar>
-     LCD_DisplayChar(85,20,'L');
+     LCD_DisplayChar(65,20,'L');
  8000bd2:	224c      	movs	r2, #76	@ 0x4c
  8000bd4:	2114      	movs	r1, #20
- 8000bd6:	2055      	movs	r0, #85	@ 0x55
+ 8000bd6:	2041      	movs	r0, #65	@ 0x41
  8000bd8:	f000 fae2 	bl	80011a0 <LCD_DisplayChar>
-     LCD_DisplayChar(100,20,'A');
+     LCD_DisplayChar(80,20,'A');
  8000bdc:	2241      	movs	r2, #65	@ 0x41
  8000bde:	2114      	movs	r1, #20
- 8000be0:	2064      	movs	r0, #100	@ 0x64
+ 8000be0:	2050      	movs	r0, #80	@ 0x50
  8000be2:	f000 fadd 	bl	80011a0 <LCD_DisplayChar>
-     LCD_DisplayChar(115,20,'Y');
+     LCD_DisplayChar(95,20,'Y');
  8000be6:	2259      	movs	r2, #89	@ 0x59
  8000be8:	2114      	movs	r1, #20
- 8000bea:	2073      	movs	r0, #115	@ 0x73
+ 8000bea:	205f      	movs	r0, #95	@ 0x5f
  8000bec:	f000 fad8 	bl	80011a0 <LCD_DisplayChar>
-     LCD_DisplayChar(130,20,'E');
+     LCD_DisplayChar(110,20,'E');
  8000bf0:	2245      	movs	r2, #69	@ 0x45
  8000bf2:	2114      	movs	r1, #20
- 8000bf4:	2082      	movs	r0, #130	@ 0x82
+ 8000bf4:	206e      	movs	r0, #110	@ 0x6e
  8000bf6:	f000 fad3 	bl	80011a0 <LCD_DisplayChar>
-     LCD_DisplayChar(145,20,'R');
+     LCD_DisplayChar(125,20,'R');
  8000bfa:	2252      	movs	r2, #82	@ 0x52
  8000bfc:	2114      	movs	r1, #20
- 8000bfe:	2091      	movs	r0, #145	@ 0x91
+ 8000bfe:	207d      	movs	r0, #125	@ 0x7d
  8000c00:	f000 face 	bl	80011a0 <LCD_DisplayChar>
 
-     LCD_DisplayChar(40,40,'M');
+     LCD_DisplayChar(155,20,'M');
  8000c04:	224d      	movs	r2, #77	@ 0x4d
- 8000c06:	2128      	movs	r1, #40	@ 0x28
- 8000c08:	2028      	movs	r0, #40	@ 0x28
+ 8000c06:	2114      	movs	r1, #20
+ 8000c08:	209b      	movs	r0, #155	@ 0x9b
  8000c0a:	f000 fac9 	bl	80011a0 <LCD_DisplayChar>
-     LCD_DisplayChar(55,40,'O');
+     LCD_DisplayChar(170,20,'O');
  8000c0e:	224f      	movs	r2, #79	@ 0x4f
- 8000c10:	2128      	movs	r1, #40	@ 0x28
- 8000c12:	2037      	movs	r0, #55	@ 0x37
+ 8000c10:	2114      	movs	r1, #20
+ 8000c12:	20aa      	movs	r0, #170	@ 0xaa
  8000c14:	f000 fac4 	bl	80011a0 <LCD_DisplayChar>
-     LCD_DisplayChar(70,40,'D');
+     LCD_DisplayChar(185,20,'D');
  8000c18:	2244      	movs	r2, #68	@ 0x44
- 8000c1a:	2128      	movs	r1, #40	@ 0x28
- 8000c1c:	2046      	movs	r0, #70	@ 0x46
+ 8000c1a:	2114      	movs	r1, #20
+ 8000c1c:	20b9      	movs	r0, #185	@ 0xb9
  8000c1e:	f000 fabf 	bl	80011a0 <LCD_DisplayChar>
-     LCD_DisplayChar(85,40,'E');
+     LCD_DisplayChar(200,20,'E');
  8000c22:	2245      	movs	r2, #69	@ 0x45
- 8000c24:	2128      	movs	r1, #40	@ 0x28
- 8000c26:	2055      	movs	r0, #85	@ 0x55
+ 8000c24:	2114      	movs	r1, #20
+ 8000c26:	20c8      	movs	r0, #200	@ 0xc8
  8000c28:	f000 faba 	bl	80011a0 <LCD_DisplayChar>
     char current = 'X';
  8000c2c:	2358      	movs	r3, #88	@ 0x58

@@ -172,19 +172,19 @@ void PlayOnePlayer(void) {
     LCD_SetTextColor(LCD_COLOR_WHITE);
     LCD_SetFont(&Font16x24);
  
-    LCD_DisplayChar(40,20,'S');
-    LCD_DisplayChar(55,20,'I');
-    LCD_DisplayChar(70,20,'N');
-    LCD_DisplayChar(85,20,'G');
-    LCD_DisplayChar(100,20,'L');
-    LCD_DisplayChar(115,20,'E');
+    LCD_DisplayChar(20,20,'S');
+    LCD_DisplayChar(35,20,'I');
+    LCD_DisplayChar(50,20,'N');
+    LCD_DisplayChar(65,20,'G');
+    LCD_DisplayChar(80,20,'L');
+    LCD_DisplayChar(95,20,'E');
 
-    LCD_DisplayChar(40,40,'P');
-    LCD_DisplayChar(55,40,'L');
-    LCD_DisplayChar(70,40,'A');
-    LCD_DisplayChar(85,40,'Y');
-    LCD_DisplayChar(100,40,'E');
-    LCD_DisplayChar(115,40,'R');
+    LCD_DisplayChar(125,20,'P');
+    LCD_DisplayChar(140,20,'L');
+    LCD_DisplayChar(155,20,'A');
+    LCD_DisplayChar(170,20,'Y');
+    LCD_DisplayChar(185,20,'E');
+    LCD_DisplayChar(200,20,'R');
     char current = 'X';
     int gameOver = 0;
     while (!gameOver) {
@@ -218,19 +218,19 @@ void PlayTwoPlayer(void) {
     LCD_SetTextColor(LCD_COLOR_WHITE);
      LCD_SetFont(&Font16x24);
 
-     LCD_DisplayChar(40,20,'2');
-     LCD_DisplayChar(55,20,'-');
-     LCD_DisplayChar(70,20,'P');
-     LCD_DisplayChar(85,20,'L');
-     LCD_DisplayChar(100,20,'A');
-     LCD_DisplayChar(115,20,'Y');
-     LCD_DisplayChar(130,20,'E');
-     LCD_DisplayChar(145,20,'R');
+     LCD_DisplayChar(20,20,'2');
+     LCD_DisplayChar(35,20,'-');
+     LCD_DisplayChar(50,20,'P');
+     LCD_DisplayChar(65,20,'L');
+     LCD_DisplayChar(80,20,'A');
+     LCD_DisplayChar(95,20,'Y');
+     LCD_DisplayChar(110,20,'E');
+     LCD_DisplayChar(125,20,'R');
 
-     LCD_DisplayChar(40,40,'M');
-     LCD_DisplayChar(55,40,'O');
-     LCD_DisplayChar(70,40,'D');
-     LCD_DisplayChar(85,40,'E');
+     LCD_DisplayChar(155,20,'M');
+     LCD_DisplayChar(170,20,'O');
+     LCD_DisplayChar(185,20,'D');
+     LCD_DisplayChar(200,20,'E');
     char current = 'X';
     int gameOver = 0;
     while (!gameOver) {

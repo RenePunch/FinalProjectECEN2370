@@ -32,6 +32,7 @@ static STMPE811_TouchData touchData;
 
 
 void firstScreen(void) {
+	touchData.orientation = STMPE811_Orientation_Portrait_2;
     LCD_Clear(0,LCD_COLOR_BLUE);
 	LCD_SetTextColor(LCD_COLOR_BLACK);
 	LCD_SetFont(&Font16x24);
@@ -75,6 +76,7 @@ void initBoard(void) {
 
 
 void GameScreen_Init(void) {
+
     LCD_Clear(0, BOARD_BG_COLOR);
     for (int r = 0; r < ROWS; r++) {
         for (int c = 0; c < COLS; c++) {
@@ -103,8 +105,8 @@ void GameScreen_Update(void) {
 
 static int PollTouchColumn(char currentPlayer) {
     while (1) {
-        if (returnTouchStateAndLocation(&touchData) == STMPE811_State_Ok) {
-            DetermineTouchPosition(&touchData);
+        if (returnTouchStateAndLocation(&touchData) == STMPE811_State_Pressed) {
+            //DetermineTouchPosition(&touchData);
             int tx = touchData.x;
 
 
@@ -267,4 +269,5 @@ void PlayTwoPlayer(void) {
         if (checkWin(current) || isBoardFull()) break;
         current = (current == HUMAN) ? BOT : HUMAN;
     }
+
 }

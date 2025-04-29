@@ -1,0 +1,12 @@
+../Core/Src/Game_Driver.c:37:6:firstScreen	8	static
+../Core/Src/Game_Driver.c:70:5:endScreen	152	static
+../Core/Src/Game_Driver.c:181:6:initBoard	16	static
+../Core/Src/Game_Driver.c:190:6:GameScreen_Init	24	static
+../Core/Src/Game_Driver.c:203:6:GameScreen_Update	24	static
+../Core/Src/Game_Driver.c:218:12:PollTouchColumn	40	static
+../Core/Src/Game_Driver.c:259:5:dropPiece	24	static
+../Core/Src/Game_Driver.c:270:5:checkDirection	40	static
+../Core/Src/Game_Driver.c:280:5:checkWin	32	static
+../Core/Src/Game_Driver.c:295:5:isBoardFull	16	static
+../Core/Src/Game_Driver.c:309:6:PlayOnePlayer	32	static
+../Core/Src/Game_Driver.c:363:6:PlayTwoPlayer	16	static

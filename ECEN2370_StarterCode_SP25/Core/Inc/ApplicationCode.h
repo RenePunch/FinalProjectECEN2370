@@ -16,6 +16,7 @@
 
 void ApplicationInit(void);
 void ApplicationFirstScreen(void);
+void ApplicationEndScreen(char winner);
 //void LCD_Visual_Demo(void);
 
 

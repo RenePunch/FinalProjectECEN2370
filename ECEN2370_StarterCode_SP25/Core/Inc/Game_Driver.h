@@ -16,7 +16,7 @@ extern RNG_HandleTypeDef hrng;
 
 void firstScreen(void);
 
-void endScreen(void);
+void endScreen(char winner);
 
 
 void initBoard(void);

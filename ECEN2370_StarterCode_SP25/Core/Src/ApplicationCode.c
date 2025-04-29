@@ -36,6 +36,12 @@ void ApplicationFirstScreen(){
 	firstScreen();
 }
 
+void ApplicationEndScreen(char winner)
+{
+    endScreen(winner);
+}
+
+
 // void LCD_Visual_Demo(void)
 // {
 // 	visualDemo();
@@ -44,34 +50,46 @@ void ApplicationFirstScreen(){
 #if COMPILE_TOUCH_FUNCTIONS == 1
 void LCD_Touch_Polling_Demo(void)
 {
-	while (1) {
-		/* If touch pressed */
-		if (returnTouchStateAndLocation(&StaticTouchData) == STMPE811_State_Pressed) {
-			/* Touch valid */
-			if(StaticTouchData.x <= 120){
+ 
+    ApplicationFirstScreen();
 
-				PlayOnePlayer();
-				endScreen();
-				HAL_Delay(10000);
-				firstScreen();
+    while (1)
+    {
+
+        if (returnTouchStateAndLocation(&StaticTouchData) == STMPE811_State_Pressed)
+        {
+            char winner = 0;
+
+      
+            if (StaticTouchData.x <= 120)
+            {
+            
+                PlayOnePlayer();
+                
+                if      (checkWin('X')) winner = 'X';
+                else if (checkWin('O')) winner = 'O';
+            }
+            else
+            {
+          
+                PlayTwoPlayer();
+                if      (checkWin('X')) winner = 'X';
+                else if (checkWin('O')) winner = 'O';
+            }
+
+     
+            ApplicationEndScreen(winner);
+
+         
+            HAL_Delay(10000);
 
 
-			}
-			else if(StaticTouchData.x >= 120){
-				PlayTwoPlayer();
-				endScreen();
-				HAL_Delay(10000);
-				firstScreen();
-			}
-			HAL_Delay(1000);
+            ApplicationFirstScreen();
+        }
 
-
-		} else {
-			/* Touch not pressed */
-			//ApplicationFirstScreen();
-
-		}
-	}
+        HAL_Delay(50);
+    }
 }
+
 #endif // COMPILE_TOUCH_FUNCTIONS
 

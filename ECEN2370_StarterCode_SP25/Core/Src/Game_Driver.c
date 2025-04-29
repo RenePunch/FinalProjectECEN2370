@@ -65,22 +65,44 @@ void firstScreen(void) {
     
 }
 
-void endScreen(void) {
-	touchData.orientation = STMPE811_Orientation_Portrait_2;
-    LCD_Clear(0,LCD_COLOR_BLUE);
-	LCD_SetTextColor(LCD_COLOR_BLACK);
-	LCD_SetFont(&Font16x24);
-	LCD_DisplayChar(60,140,'G');
-	LCD_DisplayChar(75,140,'A');
-	LCD_DisplayChar(90,140,'M');
-	LCD_DisplayChar(105,140,'E');
-	LCD_DisplayChar(135,140,'O');
+void endScreen(char winner) {
+    touchData.orientation = STMPE811_Orientation_Portrait_2;
+    LCD_Clear(0, LCD_COLOR_BLUE);
+    LCD_SetTextColor(LCD_COLOR_BLACK);
+    LCD_SetFont(&Font16x24);
+
+
+    LCD_DisplayChar(60,140,'G');
+    LCD_DisplayChar(75,140,'A');
+    LCD_DisplayChar(90,140,'M');
+    LCD_DisplayChar(105,140,'E');
+    LCD_DisplayChar(135,140,'O');
     LCD_DisplayChar(150,140,'V');
     LCD_DisplayChar(165,140,'E');
-    LCD_DisplayChar(170,140,'R');
+    LCD_DisplayChar(180,140,'R');
 
+  
+    if (winner == 'X') {
+   
+        const char *msg = "PLAYER 1 WINS";
+        for (int i = 0; msg[i]; ++i) {
+            LCD_DisplayChar(50 + 12*i, 180, msg[i]);
+        }
+    }
+    else if (winner == 'O') {
+    
+        const char *msg = "PLAYER 2 WINS";
+        for (int i = 0; msg[i]; ++i) {
+            LCD_DisplayChar(50 + 12*i, 180, msg[i]);
+        }
+    }
+    else {
 
-
+        const char *msg = "TIE GAME";
+        for (int i = 0; msg[i]; ++i) {
+            LCD_DisplayChar(70 + 12*i, 180, msg[i]);
+        }
+    }
 }
 
 
@@ -236,7 +258,10 @@ void PlayOnePlayer(void) {
         int col;
         if (current == HUMAN) {
             col = PollTouchColumn(HUMAN);
+            HAL_Delay(200);
         } else {
+
+        	HAL_Delay(2000);
             
             uint32_t rnd;
             do {
@@ -284,6 +309,7 @@ void PlayTwoPlayer(void) {
     while (1) {
       
         PollTouchColumn(current);
+        HAL_Delay(200);
         if (checkWin(current) || isBoardFull()) break;
         current = (current == HUMAN) ? BOT : HUMAN;
     }

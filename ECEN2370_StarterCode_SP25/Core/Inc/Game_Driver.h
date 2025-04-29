@@ -13,11 +13,11 @@
 
 extern char board[ROWS][COLS];
 extern RNG_HandleTypeDef hrng;  
-
+extern int lastMode;
 
 void firstScreen(void);
 
-int endScreen(char winner);
+void endScreen(char winner);
 
 
 void initBoard(void);

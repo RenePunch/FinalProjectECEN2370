@@ -6,6 +6,7 @@
 #include "fonts.h"
 #include "stm32f4xx_hal.h"
 #include <stdio.h>
+#include <string.h>
 
 #define ROWS 6
 #define COLS 7
@@ -35,4 +36,4 @@ int isBoardFull(void);
 void PlayOnePlayer(void);
 void PlayTwoPlayer(void);
 
-#endif // GAME_DRIVER_H
+#endif

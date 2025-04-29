@@ -24,6 +24,9 @@ extern RNG_HandleTypeDef hrng;
 #define CELL_SPACING_Y 40u
 #define CELL_RADIUS    13u
 
+static uint16_t scoreX = 0, scoreO = 0;
+static uint32_t lastRoundTimeSec = 0;
+
 char board[ROWS][COLS];
 static STMPE811_TouchData touchData;
 
@@ -64,46 +67,115 @@ void firstScreen(void) {
     LCD_DisplayChar(215,190,'S');
     
 }
-
-void endScreen(char winner) {
+int endScreen(char winner) {
     touchData.orientation = STMPE811_Orientation_Portrait_2;
     LCD_Clear(0, LCD_COLOR_BLUE);
+
+   
     LCD_SetTextColor(LCD_COLOR_BLACK);
     LCD_SetFont(&Font16x24);
-
-
-    LCD_DisplayChar(60,140,'G');
-    LCD_DisplayChar(75,140,'A');
-    LCD_DisplayChar(90,140,'M');
-    LCD_DisplayChar(105,140,'E');
-    LCD_DisplayChar(135,140,'O');
-    LCD_DisplayChar(150,140,'V');
-    LCD_DisplayChar(165,140,'E');
-    LCD_DisplayChar(180,140,'R');
+    {
+        const char *title = "GAME OVER";
+        uint16_t w = Font16x24.Width+2, x0 = (LCD_PIXEL_WIDTH - strlen(title)*w)/2, y0 = 60;
+        for (int i = 0; i < strlen(title); ++i)
+            LCD_DisplayChar(x0 + i*w, y0, title[i]);
+    }
 
   
-    if (winner == 'X') {
-   
-        const char *msg = "PLAYER 1 WINS";
-        for (int i = 0; msg[i]; ++i) {
-            LCD_DisplayChar(50 + 12*i, 180, msg[i]);
-        }
-    }
-    else if (winner == 'O') {
-    
-        const char *msg = "PLAYER 2 WINS";
-        for (int i = 0; msg[i]; ++i) {
-            LCD_DisplayChar(50 + 12*i, 180, msg[i]);
-        }
-    }
-    else {
+    if      (winner == 'X') scoreX++;
+    else if (winner == 'O') scoreO++;
 
-        const char *msg = "TIE GAME";
-        for (int i = 0; msg[i]; ++i) {
-            LCD_DisplayChar(70 + 12*i, 180, msg[i]);
+  
+    LCD_SetFont(&Font12x12);
+    uint16_t sw = Font12x12.Width+1, sh = Font12x12.Height;
+    char buf[32];
+
+
+    snprintf(buf, sizeof(buf), "P1:%u  P2:%u", scoreX, scoreO);
+    {
+        int len = strlen(buf);
+        uint16_t x = (LCD_PIXEL_WIDTH - len*sw)/2, y = 60 + Font16x24.Height + 20;
+        for (int i = 0; i < len; ++i) LCD_DisplayChar(x + i*sw, y, buf[i]);
+    }
+
+  
+    snprintf(buf, sizeof(buf), "Time:%lus", lastRoundTimeSec);
+    {
+        int len = strlen(buf);
+        uint16_t x = (LCD_PIXEL_WIDTH - len*sw)/2,
+                 y = 60 + Font16x24.Height + 20 + sh + 10;
+        for (int i = 0; i < len; ++i) LCD_DisplayChar(x + i*sw, y, buf[i]);
+    }
+
+
+    const char *btn1 = "RESTART", *btn2 = "MENU";
+    int len1 = strlen(btn1), len2 = strlen(btn2);
+    uint16_t yBtn = LCD_PIXEL_HEIGHT - sh - 20;
+    uint16_t xBtn1 = (LCD_PIXEL_WIDTH/4) - (len1*sw)/2;
+    uint16_t xBtn2 = (3*LCD_PIXEL_WIDTH/4) - (len2*sw)/2;
+    for (int i = 0; i < len1; ++i) LCD_DisplayChar(xBtn1 + i*sw, yBtn, btn1[i]);
+    for (int i = 0; i < len2; ++i) LCD_DisplayChar(xBtn2 + i*sw, yBtn, btn2[i]);
+
+
+    uint16_t x1a = xBtn1-2, x1b = xBtn1 + len1*sw+2,
+             x2a = xBtn2-2, x2b = xBtn2 + len2*sw+2;
+    uint16_t yA  = yBtn-2, yB = yBtn+sh+2;
+
+
+    STMPE811_TouchData td;
+    while (1) {
+        if (returnTouchStateAndLocation(&td) == STMPE811_State_Pressed) {
+            DetermineTouchPosition(&td);
+            if (td.x >= x1a && td.x <= x1b && td.y >= yA && td.y <= yB)
+                return 1;   
+            if (td.x >= x2a && td.x <= x2b && td.y >= yA && td.y <= yB)
+                return 0;   
         }
+        HAL_Delay(50);
     }
 }
+
+
+
+// void endScreen(char winner) {
+//     touchData.orientation = STMPE811_Orientation_Portrait_2;
+//     LCD_Clear(0, LCD_COLOR_BLUE);
+//     LCD_SetTextColor(LCD_COLOR_BLACK);
+//     LCD_SetFont(&Font16x24);
+
+
+//     LCD_DisplayChar(60,140,'G');
+//     LCD_DisplayChar(75,140,'A');
+//     LCD_DisplayChar(90,140,'M');
+//     LCD_DisplayChar(105,140,'E');
+//     LCD_DisplayChar(135,140,'O');
+//     LCD_DisplayChar(150,140,'V');
+//     LCD_DisplayChar(165,140,'E');
+//     LCD_DisplayChar(180,140,'R');
+
+  
+//     if (winner == 'X') {
+   
+//         const char *msg = "PLAYER 1 WINS";
+//         for (int i = 0; msg[i]; ++i) {
+//             LCD_DisplayChar(50 + 12*i, 180, msg[i]);
+//         }
+//     }
+//     else if (winner == 'O') {
+    
+//         const char *msg = "PLAYER 2 WINS";
+//         for (int i = 0; msg[i]; ++i) {
+//             LCD_DisplayChar(50 + 12*i, 180, msg[i]);
+//         }
+//     }
+//     else {
+
+//         const char *msg = "TIE GAME";
+//         for (int i = 0; msg[i]; ++i) {
+//             LCD_DisplayChar(70 + 12*i, 180, msg[i]);
+//         }
+//     }
+// }
 
 
 void initBoard(void) {
@@ -235,6 +307,7 @@ enum {
 };
 
 void PlayOnePlayer(void) {
+    uint32_t startTick = HAL_GetTick();
     initBoard();
     GameScreen_Init();
 
@@ -282,11 +355,13 @@ void PlayOnePlayer(void) {
         if (checkWin(current) || isBoardFull()) break;
         current = (current == HUMAN) ? BOT : HUMAN;
     }
+    lastRoundTimeSec = (HAL_GetTick() - startTick) / 1000;
 }
 
 
 
 void PlayTwoPlayer(void) {
+    uint32_t startTick = HAL_GetTick();
     initBoard();
     GameScreen_Init();
 
@@ -313,5 +388,6 @@ void PlayTwoPlayer(void) {
         if (checkWin(current) || isBoardFull()) break;
         current = (current == HUMAN) ? BOT : HUMAN;
     }
+    lastRoundTimeSec = (HAL_GetTick() - startTick) / 1000;
 
 }

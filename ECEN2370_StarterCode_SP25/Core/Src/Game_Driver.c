@@ -136,19 +136,13 @@ void endScreen(char winner) {
         DetermineTouchPosition(&td);
 
         
-        if (td.x < (LCD_PIXEL_WIDTH / 2)) {
-            
-            if (lastMode == 1) {
-                PlayOnePlayer();
-            } else  {
-                PlayTwoPlayer();
-            }
-          
+        if (td.x < (LCD_PIXEL_WIDTH/2)) {
+            restartGame();
+           
             if      (checkWin('X')) winner = 'X';
             else if (checkWin('O')) winner = 'O';
             else                    winner = 0;
-         
-            continue;
+            continue;  
         } else {
           
             firstScreen();
@@ -156,7 +150,16 @@ void endScreen(char winner) {
         }
     }
 }
-
+void restartGame(void) {
+   
+    if (lastMode == 1) {
+        PlayOnePlayer();
+    }
+    else if (lastMode == 2) {
+        PlayTwoPlayer();
+    }
+ 
+}
 
 
 

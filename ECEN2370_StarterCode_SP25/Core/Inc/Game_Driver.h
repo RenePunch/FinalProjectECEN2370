@@ -19,6 +19,8 @@ void firstScreen(void);
 
 void endScreen(char winner);
 
+void restartGame(void);
+
 
 void initBoard(void);
 

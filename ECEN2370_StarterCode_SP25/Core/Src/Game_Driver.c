@@ -16,6 +16,7 @@ extern RNG_HandleTypeDef hrng;
 #define EMPTY_HOLE_COLOR  LCD_COLOR_WHITE
 #define PLAYER1_COLOR     LCD_COLOR_RED
 #define PLAYER2_COLOR     LCD_COLOR_YELLOW
+#define BOARD_SHIFT_Y   (4u * CELL_RADIUS)
 
 
 #define ORIGIN_X 20u

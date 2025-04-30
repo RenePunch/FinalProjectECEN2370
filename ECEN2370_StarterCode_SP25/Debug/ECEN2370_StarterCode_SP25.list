@@ -29,25 +29,25 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  12 .ARM.attributes 00000030  00000000  00000000  0000b088  2**0
                   CONTENTS, READONLY
- 13 .debug_info   00013267  00000000  00000000  0000b0b8  2**0
+ 13 .debug_info   00013261  00000000  00000000  0000b0b8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_abbrev 00003036  00000000  00000000  0001e31f  2**0
+ 14 .debug_abbrev 00003036  00000000  00000000  0001e319  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_aranges 00001358  00000000  00000000  00021358  2**3
+ 15 .debug_aranges 00001358  00000000  00000000  00021350  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_rnglists 00000f03  00000000  00000000  000226b0  2**0
+ 16 .debug_rnglists 00000f03  00000000  00000000  000226a8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_macro  000267f9  00000000  00000000  000235b3  2**0
+ 17 .debug_macro  000267ff  00000000  00000000  000235ab  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   0001762c  00000000  00000000  00049dac  2**0
+ 18 .debug_line   0001762c  00000000  00000000  00049daa  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    000e11d2  00000000  00000000  000613d8  2**0
+ 19 .debug_str    000e11f3  00000000  00000000  000613d6  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .comment      00000043  00000000  00000000  001425aa  2**0
+ 20 .comment      00000043  00000000  00000000  001425c9  2**0
                   CONTENTS, READONLY
- 21 .debug_frame  00005b80  00000000  00000000  001425f0  2**2
+ 21 .debug_frame  00005b80  00000000  00000000  0014260c  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 22 .debug_line_str 000000a3  00000000  00000000  00148170  2**0
+ 22 .debug_line_str 000000a3  00000000  00000000  0014818c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -801,10 +801,8 @@ void firstScreen(void) {
  80007f8:	20000004 	.word	0x20000004
 
 080007fc <endScreen>:
-//     LCD_DisplayChar(200,190,'R');
-//     LCD_DisplayChar(215,190,'S');
-    
-// }
+
+
 
 void endScreen(char winner) {
  80007fc:	b580      	push	{r7, lr}

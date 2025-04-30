@@ -1,0 +1,14 @@
+../Core/Src/Gyro.c:8:13:GyroCSEnable	8	static
+../Core/Src/Gyro.c:14:13:GyroCSDisable	8	static
+../Core/Src/Gyro.c:20:6:GyroEnableSlaveCommunication	8	static
+../Core/Src/Gyro.c:26:6:GyroDisableSlaveCommunication	8	static
+../Core/Src/Gyro.c:32:6:GyroVerifyHALStatus	8	static
+../Core/Src/Gyro.c:39:9:GyroReadRegister	24	static
+../Core/Src/Gyro.c:55:6:GyroWriteRegister	24	static
+../Core/Src/Gyro.c:65:6:printGyro	16	static
+../Core/Src/Gyro.c:75:6:GyroInit	40	static
+../Core/Src/Gyro.c:90:6:GyroConfigureRegisters	16	static
+../Core/Src/Gyro.c:97:6:GyroGetDeviceID	24	static
+../Core/Src/Gyro.c:104:6:GyroPowerOn	24	static
+../Core/Src/Gyro.c:112:6:GyroPowerOff	24	static
+../Core/Src/Gyro.c:120:6:GyroGetTemperature	24	static

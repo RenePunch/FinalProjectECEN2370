@@ -33,22 +33,23 @@ static STMPE811_TouchData touchData;
 
 
 
-
-
 void firstScreen(void) {
-	touchData.orientation = STMPE811_Orientation_Portrait_2;
-    LCD_Clear(0,LCD_COLOR_BLUE);
-	LCD_SetTextColor(LCD_COLOR_BLACK);
-	LCD_SetFont(&Font16x24);
-	LCD_DisplayChar(60,140,'C');
-	LCD_DisplayChar(75,140,'o');
-	LCD_DisplayChar(90,140,'n');
-	LCD_DisplayChar(105,140,'n');
-	LCD_DisplayChar(120,140,'e');
-	LCD_DisplayChar(135,140,'c');
-	LCD_DisplayChar(150,140,'t');
-	LCD_DisplayChar(180,140,'4');
+    touchData.orientation = STMPE811_Orientation_Portrait_2;
+    LCD_Clear(0, LCD_COLOR_BLUE);
 
+
+    LCD_SetTextColor(LCD_COLOR_BLACK);
+    LCD_SetFont(&Font16x24);
+    LCD_DisplayChar(60,140,'C');
+    LCD_DisplayChar(75,140,'o');
+    LCD_DisplayChar(90,140,'n');
+    LCD_DisplayChar(105,140,'n');
+    LCD_DisplayChar(120,140,'e');
+    LCD_DisplayChar(135,140,'c');
+    LCD_DisplayChar(150,140,'t');
+    LCD_DisplayChar(180,140,'4');
+
+    
     LCD_DisplayChar(10,190,'1');
     LCD_DisplayChar(20,190,'P');
     LCD_DisplayChar(30,190,'L');
@@ -56,8 +57,8 @@ void firstScreen(void) {
     LCD_DisplayChar(55,190,'Y');
     LCD_DisplayChar(70,190,'E');
     LCD_DisplayChar(85,190,'R');
-    
 
+  
     LCD_DisplayChar(115,190,'2');
     LCD_DisplayChar(135,190,'P');
     LCD_DisplayChar(145,190,'L');
@@ -66,8 +67,21 @@ void firstScreen(void) {
     LCD_DisplayChar(185,190,'E');
     LCD_DisplayChar(200,190,'R');
     LCD_DisplayChar(215,190,'S');
-    
+
+   
+    uint16_t radius = 20;
+    uint16_t yCircle = 190 + Font16x24.Height + 20; 
+
+
+    uint16_t x1 = (10 + 85) / 2;
+
+    uint16_t x2 = (115 + 215) / 2;
+
+    LCD_Draw_Circle_Fill(x1, yCircle, radius, LCD_COLOR_RED);
+    LCD_Draw_Circle_Fill(x2, yCircle, radius, LCD_COLOR_RED);
 }
+
+
 
 void endScreen(char winner) {
     touchData.orientation = STMPE811_Orientation_Portrait_2;
